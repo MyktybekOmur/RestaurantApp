@@ -23,6 +23,16 @@
 
     <!-- CHECKOUT BUTTON -->
     <app-button *ngIf="(cartItems$|async).length">
-        Toplam: <span>{{totalAmount$|async|number:'1.2'}}<sup>TL</sup></span>
+        Toplam: <span>{{totalAmount$|async|number:'1.2'}}<sup>som</sup></span>
     </app-button>
+
+    <h3 class="title" > Önceki siparişler</h3>
+    <ion-list lines="none">
+        <ion-item-sliding *ngFor="let item of cartItems$|async">
+            <ion-item>
+                <app-card-history-item [item]="item" (increase)="onIncrease(item)" (decrease)="onDecrease(item)"></app-card-history-item>
+            </ion-item>
+ 
+        </ion-item-sliding>
+    </ion-list>
 </ion-content>

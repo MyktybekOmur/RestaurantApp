@@ -17,6 +17,24 @@ const routes: Routes = [
     loadChildren: () =>
       import('./screens/detail/detail.module').then((m) => m.DetailPageModule),
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./screens/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'statistics',
+    loadChildren: () => import('./screens/statistics/statistics.module').then( m => m.StatisticsPageModule)
+  },
+  {
+    path: 'products',
+    loadChildren: () => import('./screens/products/products.module').then( m => m.ProductsPageModule)
+  },
+  {
+    path: 'stories',
+    loadChildren: () => import('./screens/stories/stories.module').then( m => m.StoriesPageModule)
+  },
+
+ 
 ];
 
 @NgModule({

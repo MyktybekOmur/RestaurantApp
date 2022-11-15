@@ -1,3 +1,4 @@
+
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Food } from 'src/app/models/food.model';
 
@@ -8,6 +9,9 @@ import { Food } from 'src/app/models/food.model';
 })
 export class FoodCardComponent {
   @Input() item: Food;
+  @Input() type: boolean;
+
 
   @Output() clicked = new EventEmitter();
+  @Output() edit = new EventEmitter();
 }

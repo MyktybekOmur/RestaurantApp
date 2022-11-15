@@ -1,0 +1,88 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <ion-button routerLink="/home/profile">
+        <ion-icon slot="icon-only" color='light' name="arrow-back"></ion-icon>
+      </ion-button>
+      <ion-title class="ion-text-center">
+        Stiries
+      </ion-title>
+    </ion-buttons>
+
+
+    <!-- <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> -->
+
+  </ion-toolbar>
+
+  <ion-grid></ion-grid>
+  <ion-list class="popover" lines="none">
+    <ion-row>
+ 
+      <ion-col size="6">
+        <!-- <ion-item>
+          <ion-label class="ion-text-wrap ion-text-right">
+            <h1>
+              <ion-text class="ion-margin-end" color="primary"></ion-text>
+              <b>481</b>
+            </h1>
+            <p>Done</p>
+          </ion-label>
+        </ion-item> -->
+      </ion-col>
+      <ion-col size="12">
+        <ion-item>
+          <ion-label class="ion-text-center">
+            <h1>
+              <b>291</b>
+              <ion-text class="ion-margin-start" color="primary"></ion-text>
+            </h1>
+            <p></p>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+  </ion-list>
+</ion-header>
+
+<ion-content>
+
+
+
+  <ion-list lines="none" style="margin-top: 20px;">
+  
+
+    <ion-item-group>
+      <ion-item-sliding *ngFor="let item of requests">
+        <ion-item (click)="options()" class="ion-padding-vertical popItem">
+        
+          <ion-label>
+            <ion-note color="dark"><b>{{item?.name}}</b></ion-note>
+            <p class="ion-text-wrap">{{item?.address}}</p>
+            <p>
+              <ion-text color="dark">{{item?.age}}</ion-text>
+              <ion-text color="dark"><span>&#9679;</span>{{item?.gender}}</ion-text>
+              <ion-text color="dark"><span>&#9679;</span>{{item?.distance == 1 ? item?.distance + 'km' : item?.distance
+                + 'kms'}}</ion-text>
+            </p>
+          </ion-label>
+          <ion-fab vertical="top" horizontal="end">
+            <ion-fab-button size="small" color="white">
+              <img [src]="item?.photo" />
+            </ion-fab-button>
+          </ion-fab>
+        </ion-item>
+        <!-- <ion-item-options side='end'>
+          <ion-item-option (click)="removeFromCart(item)">
+            <ion-icon name='checkmark-done-outline' size='large' color='success'></ion-icon>
+         
+          </ion-item-option>
+        </ion-item-options> -->
+      </ion-item-sliding>
+
+    </ion-item-group>
+  </ion-list>
+
+</ion-content>

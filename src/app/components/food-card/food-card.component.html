@@ -1,14 +1,20 @@
-<div class="card" (click)="clicked.emit()">
-    <ion-img [src]="item.image"></ion-img>
+<div class="card" >
+    <ion-img (click)="clicked.emit()" [src]="item.image"></ion-img>
 
     <div class="card-content">
-        <h3 class="title">{{item.title}}</h3>
-        <h2 class="subtitle">{{item.price|number:'1.2'}}<sup>TL</sup></h2>
-
+        <h3 (click)="clicked.emit()" class="title">{{item.title}}</h3>
+        <h2 (click)="clicked.emit()" class="subtitle">{{item.price}}<sup>som</sup></h2>
         <ion-buttons slot="start">
-            <ion-button>
-                <ion-icon slot="icon-only" name="add"></ion-icon>
+            <ion-button  *ngIf="!type"  (click)="clicked.emit()">
+       
+               <ion-icon  slot="icon-only" name="add"></ion-icon>
+               
             </ion-button>
+            <ion-button *ngIf="type"  (click)="edit.emit()">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              
+                
+             </ion-button>
         </ion-buttons>
     </div>
 </div>

@@ -20,6 +20,14 @@ const routes: Routes = [
           import('../screens/cart/cart.module').then((m) => m.CartPageModule),
       },
       {
+        path: 'profile',
+        loadChildren: () => import('../screens/profile/profile.module').then( m => m.ProfilePageModule)
+      },
+      {
+        path: 'orders',
+        loadChildren: () => import('../screens/orders/orders.module').then( m => m.OrdersPageModule)
+      },
+      {
         path: '',
         redirectTo: 'listing',
         pathMatch: 'full',

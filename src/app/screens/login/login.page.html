@@ -1,0 +1,49 @@
+<ion-content >
+  <div class="ion-text-center">
+    <!-- <img class="img1" src="assets/loginimage.svg"> -->
+  </div>
+    <div *ngIf="isLogin" class="container">
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="card-body">
+      <div class="form ion-text-center">
+        <h2>Login </h2>
+        <ion-item lines='none'>
+          <ion-input type="tel" [(ngModel)]="loginForm.number" name="telnumbet" required #telnumber="ngModel" placeholder="552 333 3333" ></ion-input>
+ 
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-input type="password" [(ngModel)]="loginForm.password" name="password" required #password="ngModel" placeholder='Password'></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand='block' >Login</ion-button>
+        <h3 (click)="login(false)">Registration </h3>
+      </div>
+</form>
+    </div>
+    <div *ngIf="!isLogin" class="container">
+      <form name="form1" (ngSubmit)="f.form.valid && onSubmitReg()" #f="ngForm" novalidate class="card-body">
+      <div class="form ion-text-center">
+        <h2>Register </h2>
+        <ion-item lines='none'>
+          <ion-input  [(ngModel)]="form.name" name="name" required #name="ngModel" placeholder='Ati jonu'></ion-input>
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-input  [(ngModel)]="form.email" name="email" required #email="ngModel" placeholder='Email'></ion-input>
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-input  [(ngModel)]="form.number" name="telnumbet" required #telnumber="ngModel" placeholder='Number'></ion-input>
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-input  [(ngModel)]="form.storeName" name="storeName" required #storeName="ngModel" placeholder='Magazin Aty'></ion-input>
+        </ion-item>
+        <ion-item lines='none'>
+          <ion-input  [(ngModel)]="form.storeAdress" name="storeAdress" required #storeAdress="ngModel" placeholder='Magazin Adress'></ion-input>
+        </ion-item>
+    
+        <ion-item lines='none'>
+          <ion-input  [(ngModel)]="form.password" name="password" required #password="ngModel" placeholder='Password'></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand='block' >Registration</ion-button>
+        <h3 (click)="login(true)">Login </h3>
+      </div>
+    </form>
+    </div>
+  </ion-content>

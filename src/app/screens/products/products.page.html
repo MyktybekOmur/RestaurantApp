@@ -23,6 +23,11 @@
   <!-- PRODUCTS -->
   <!-- <h1 class="list-header">Popüler</h1> -->
   <div class="food-list">
-      <app-food-card *ngFor="let food of foods" [item]="food" [type]="true" (clicked)="goToDetailPage(food.id)" (edit)="goToEditPage(food)"></app-food-card>
+      <app-food-card *ngFor="let food of foods" [item]="food" [type]="true" (clicked)="goToDetailPage(food.id)" (edit)="goToEditPage(food,true)"></app-food-card>
   </div>
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="goToEditPage('',false)">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -1,7 +1,9 @@
+import { AddProductComponent } from './../../modals/add-product/add-product.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Food } from 'src/app/models/food.model';
 import { FoodService } from 'src/app/services/food.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +13,7 @@ import { FoodService } from 'src/app/services/food.service';
 export class ProductsPage implements OnInit {
   foods: Food[] = [];
 
-  constructor(private foodService: FoodService, private router: Router) { }
+  constructor(private foodService: FoodService, private router: Router,private modalCtrl: ModalController) { }
 
   ngOnInit() {
     
@@ -22,7 +24,24 @@ export class ProductsPage implements OnInit {
   goToDetailPage(id: number) {
     this.router.navigate(['detail', id]);
   }
-  goToEditPage(id: number) {
-    console.log(id)
+ 
+  async goToEditPage(item: any,type:boolean){
+    const modal = await this.modalCtrl.create({
+      component: AddProductComponent,
+      swipeToClose: true,
+      presentingElement: await this.modalCtrl.getTop(),
+      componentProps: {
+        'type': type,
+        'item':item
+      }
+   
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      console.log(data);
+    }
   }
 }

@@ -1,0 +1,16 @@
+ion-button{
+    --background:  var(--ion-color-primary);
+    margin-top: 20px;
+  }
+  
+  .form{
+    padding: 10px;
+    ion-item{
+      border-style: solid;
+      border-radius: 10px;
+      border-width: 2px;
+      border-color: grey;
+      margin-top: 20px;
+    }
+    
+  }

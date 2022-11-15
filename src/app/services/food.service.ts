@@ -14,6 +14,7 @@ export class FoodService {
         image: 'assets/images/foods/Kebap.png',
         description:
           'Burda içinde neler olduğu hakkında olacaktır',
+          is_active:'1'
       },
       {
         id: 2,
@@ -22,6 +23,7 @@ export class FoodService {
         image: 'assets/images/foods/kahvalti.png',
         description:
           'Burda içinde neler olduğu hakkında olacaktır',
+          is_active:'0'
       },
       {
         id: 3,
@@ -30,6 +32,7 @@ export class FoodService {
         image: 'assets/images/foods/doner.png',
         description:
           'Burda içinde neler olduğu hakkında olacaktır',
+          is_active:'1'
       },
       {
         id: 4,
@@ -38,6 +41,7 @@ export class FoodService {
         image: 'assets/images/foods/pizza.png',
         description:
           'Burda içinde neler olduğu hakkında olacaktır',
+          is_active:'0'
       },
       {
         id: 5,
@@ -46,6 +50,7 @@ export class FoodService {
         image: 'assets/images/foods/scott-ish-breakfast.png',
         description:
           'Burda içinde neler olduğu hakkında olacaktır',
+          is_active:'0'
       },
       {
         id: 6,
@@ -54,6 +59,7 @@ export class FoodService {
         image: 'assets/images/foods/Kofte.png',
         description:
           'Burda içinde neler olduğu hakkında olacaktır',
+          is_active:'1'
       },
     ];
   }

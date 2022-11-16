@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { DataService } from './../../services/data/data.service';
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-
-  constructor() { }
+  user:any = [];
+  constructor(private LocalStore: DataService,private router:Router) { }
 
   ngOnInit() {
+
+    this.getUserData().then((result)=>{
+      this.user = result[0][0];
+      console.log(this.user)
+    });
+  
+
+  }
+  async getUserData(){
+    return await this.LocalStore.getData();
+  }
+  logout(){
+    this.LocalStore.removeData();
+    this.router.navigate(['/'])
   }
 
 }

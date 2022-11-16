@@ -15,13 +15,13 @@
     <!-- FOOD DETAIL CARD -->
     <div class="card">
         <div class="image">
-            <ion-img [src]="food.image"></ion-img>
+            <ion-img [src]="food?.image"></ion-img>
         </div>
 
         <div class="card-content">
             <div class="card-title">
-                <h1 class="ion-no-margin">{{food.title}}</h1>
-                <p class="ion-no-margin">{{food.price}}<sup>som</sup></p>
+                <h1 class="ion-no-margin">{{food?.title}}</h1>
+                <p class="ion-no-margin">{{food?.price}}<sup>som</sup></p>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
 
         <div class="about">
             <h1>Özellikler</h1>
-            <p>{{food.description}}</p>
+            <p>{{food?.description}}</p>
         </div>
 
         <app-button (click)="addItemToCart()">Sepete Ekle</app-button>

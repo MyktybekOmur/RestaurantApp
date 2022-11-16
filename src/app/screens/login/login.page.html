@@ -7,13 +7,13 @@
       <div class="form ion-text-center">
         <h2>Login </h2>
         <ion-item lines='none'>
-          <ion-input type="tel" [(ngModel)]="loginForm.number" name="telnumbet" required #telnumber="ngModel" placeholder="552 333 3333" ></ion-input>
+          <ion-input type="tel" [(ngModel)]="loginForm.number" name="telnumbet" required #telnumber="ngModel" placeholder="+996 999 555 135" ></ion-input>
  
         </ion-item>
         <ion-item lines='none'>
           <ion-input type="password" [(ngModel)]="loginForm.password" name="password" required #password="ngModel" placeholder='Password'></ion-input>
         </ion-item>
-        <ion-button type="submit" expand='block' >Login</ion-button>
+        <ion-button type="submit"  [disabled]="!f.form.valid || loginForm.number.length!=13" expand='block' >Login</ion-button>
         <h3 (click)="login(false)">Registration </h3>
       </div>
 </form>
@@ -41,7 +41,7 @@
         <ion-item lines='none'>
           <ion-input  [(ngModel)]="form.password" name="password" required #password="ngModel" placeholder='Password'></ion-input>
         </ion-item>
-        <ion-button type="submit" expand='block' >Registration</ion-button>
+        <ion-button type="submit" [disabled]="!f.form.valid || form.number.length!=13" expand='block' >Registration</ion-button>
         <h3 (click)="login(true)">Login </h3>
       </div>
     </form>

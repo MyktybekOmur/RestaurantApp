@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { AlertController, LoadingController, ModalController } from '@ionic/angular';
+import { ProductsService } from 'src/app/services/products/products.service';
 
 @Component({
   selector: 'app-add-product',
@@ -23,25 +25,85 @@ export class AddProductComponent implements OnInit  {
     image:'',
     is_active:false
   }
+  result: any;
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController,
+    private loadingController: LoadingController,
+    private productApi:ProductsService,
+    private alertController: AlertController,) { }
+
   ngOnInit(): void {
-    console.log(this.type);
-    console.log(this.item);
-    this.form = {
-      title:this.item?.title,
-      price:this.item?.price,
-      description:this.item?.description,
-      image:this.item?.image,
-      is_active:this.item?.is_active
+    if(this.type){
+      this.productApi.getProduct(this.item.id).subscribe((res)=>{
+        this.form = res;
+      })
+    
     }
+
   }
 
   cancel() {
     return this.modalCtrl.dismiss(null, 'cancel');
   }
 
-  confirm() {
-    return this.modalCtrl.dismiss(this.form, 'confirm');
+  async confirm() {
+    const body = {
+      title:this.form.title,
+      price:Number(this.form.price),
+      description:this.form.description,
+      image:'',
+      is_active:this.form.is_active
+    }
+
+    const loading = await this.loadingController.create();
+    await loading.present();
+    if (this.type) {
+      this.result = await this.productApi.updateProduct(this.item.id, this.form);
+    } else {
+     
+      this.result = await this.productApi.setProduct(body);
+      console.log(this.result)
+    }
+
+    loading.dismiss();
+
+    if (!this.result) {
+      const alert = await this.alertController.create({
+        header: 'Upload failed',
+        message: 'There was a problem uploading your avatar.',
+        buttons: ['OK'],
+      });
+      await alert.present();
+    } else {
+      this.cancel();
+    }
+    
   }
+  async changeImage() {
+  
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Photos, // Camera, Photos or Prompt!
+    });
+ 
+    if (image) {
+      const loading = await this.loadingController.create();
+      await loading.present();
+ 
+      const result = await this.productApi.uploadImage(image,this.item.id);
+      loading.dismiss();
+ 
+      if (!result) {
+        const alert = await this.alertController.create({
+          header: 'Upload failed',
+          message: 'There was a problem uploading your avatar.',
+          buttons: ['OK'],
+        });
+        await alert.present();
+      }
+    }
+  }
+
 }

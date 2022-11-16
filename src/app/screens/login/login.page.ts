@@ -1,5 +1,8 @@
+import { UsersService } from './../../services/users/users.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data/data.service';
+import { LoadingController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -14,23 +17,53 @@ export class LoginPage implements OnInit {
     storeName:'',
     storeAdress:'',
     number:'',
-    password:''
+    password:'',
+    role:null,
+    image:''
   }
   loginForm: any = {
     number:'',
     password:''
   }
-  constructor(private router:Router) { }
+  constructor(private router:Router,private usersApi:UsersService,
+      private localData: DataService,  
+      private loadingController: LoadingController,
+      private toastController: ToastController) { }
 
   ngOnInit() {
   }
   login(item:boolean){
     this.isLogin = item;
   }
-  onSubmit(){
-    this.router.navigate(['/'])
+  async onSubmit(){
+    const loading = await this.loadingController.create();
+    await loading.present();
+    this.usersApi.login(this.loginForm).subscribe((res)=>{
+      console.log(res)
+      if(res.length>0){
+        this.localData.addData(res);
+        this.router.navigate(['/home'])
+      }else{
+        this.presentToast('top')
+      }
+   
+    })
+    loading.dismiss();
+    
   }
   onSubmitReg(){
-    console.log(this.form)
+    this.usersApi.setUser(this.form).then((res)=>{
+      console.log(res)
+    })
+  }
+  async presentToast(position: 'top' | 'middle' | 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Error!',
+      color: 'danger',
+      duration: 1500,
+      position: position
+    });
+
+    await toast.present();
   }
 }

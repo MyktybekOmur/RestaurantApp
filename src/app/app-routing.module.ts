@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'splashscreen',
     pathMatch: 'full',
   },
   {
@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'stories',
     loadChildren: () => import('./screens/stories/stories.module').then( m => m.StoriesPageModule)
+  },
+  {
+    path: 'splashscreen',
+    loadChildren: () => import('./splashscreen/splashscreen.module').then( m => m.SplashscreenPageModule)
   },
 
  

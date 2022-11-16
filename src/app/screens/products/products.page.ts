@@ -1,3 +1,4 @@
+import { ProductsService } from './../../services/products/products.service';
 import { AddProductComponent } from './../../modals/add-product/add-product.component';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -13,11 +14,19 @@ import { ModalController } from '@ionic/angular';
 export class ProductsPage implements OnInit {
   foods: Food[] = [];
 
-  constructor(private foodService: FoodService, private router: Router,private modalCtrl: ModalController) { }
+  constructor(private foodService: FoodService,
+     private router: Router,
+     private modalCtrl: ModalController,
+     private productApi:ProductsService) { }
 
   ngOnInit() {
     
-    this.foods = this.foodService.getFoods();
+   this.getProductsList();
+  }
+  getProductsList(){
+    this.productApi.getProducts().subscribe((res)=>{
+      this.foods = res;
+    })
   }
 
 
@@ -38,10 +47,8 @@ export class ProductsPage implements OnInit {
     });
     modal.present();
 
-    const { data, role } = await modal.onWillDismiss();
+    const { data, role} = await modal.onWillDismiss();
 
-    if (role === 'confirm') {
-      console.log(data);
-    }
+
   }
 }

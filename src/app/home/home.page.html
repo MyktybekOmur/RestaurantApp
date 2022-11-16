@@ -3,7 +3,7 @@
         <ion-tab-button tab="listing">
             <ion-icon name="grid-outline"></ion-icon>
         </ion-tab-button>
-        <ion-tab-button tab="orders">
+        <ion-tab-button *ngIf="user?.role" tab="orders">
             <ion-icon name="cart-outline"></ion-icon>
         </ion-tab-button>
 

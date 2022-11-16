@@ -1,3 +1,4 @@
+import { ProductsService } from 'src/app/services/products/products.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
@@ -12,28 +13,34 @@ import { FoodService } from 'src/app/services/food.service';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  id: number;
+  id: string;
   food: Food;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private foodService: FoodService,
     private cartService: CartService,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private productApi:ProductsService
   ) {
-    this.id = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = this.activatedRoute.snapshot.paramMap.get('id');
   }
 
   ngOnInit() {
-    this.food = this.foodService.getFood(this.id);
+    this.getProduct();
+  }
+  getProduct(){
+    this.productApi.getProduct(this.id).subscribe((res)=>{
+      this.food = res;
+    })
   }
 
   addItemToCart() {
     const cartitem: CartItem = {
-      id: this.food.id,
-      name: this.food.title,
-      price: this.food.price,
-      image: this.food.image,
+      id: this.food?.id,
+      name: this.food?.title,
+      price: this.food?.price,
+      image: this.food?.image,
       quantity: 1,
     };
 

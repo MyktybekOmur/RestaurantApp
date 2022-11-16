@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataService } from '../services/data/data.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,19 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  user:any = [];
+  constructor(private LocalStore: DataService) { }
+
+  ngOnInit() {
+
+    this.getUserData().then((result)=>{
+      this.user = result[0][0];
+    });
+  
+
+  }
+  async getUserData(){
+    return await this.LocalStore.getData();
+  }
 
 }

@@ -33,12 +33,7 @@ export class AddProductComponent implements OnInit  {
     private alertController: AlertController,) { }
 
   ngOnInit(): void {
-    if(this.type){
-      this.productApi.getProduct(this.item.id).subscribe((res)=>{
-        this.form = res;
-      })
-    
-    }
+
 
   }
 
@@ -57,13 +52,7 @@ export class AddProductComponent implements OnInit  {
 
     const loading = await this.loadingController.create();
     await loading.present();
-    if (this.type) {
-      this.result = await this.productApi.updateProduct(this.item.id, this.form);
-    } else {
-     
-      this.result = await this.productApi.setProduct(body);
-      console.log(this.result)
-    }
+
 
     loading.dismiss();
 
@@ -79,31 +68,6 @@ export class AddProductComponent implements OnInit  {
     }
     
   }
-  async changeImage() {
-  
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Base64,
-      source: CameraSource.Photos, // Camera, Photos or Prompt!
-    });
- 
-    if (image) {
-      const loading = await this.loadingController.create();
-      await loading.present();
- 
-      const result = await this.productApi.uploadImage(image,this.item.id);
-      loading.dismiss();
- 
-      if (!result) {
-        const alert = await this.alertController.create({
-          header: 'Upload failed',
-          message: 'There was a problem uploading your avatar.',
-          buttons: ['OK'],
-        });
-        await alert.present();
-      }
-    }
-  }
+
 
 }

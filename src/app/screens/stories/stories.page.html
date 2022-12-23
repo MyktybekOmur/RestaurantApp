@@ -36,9 +36,9 @@
           <ion-label class="ion-text-center">
             <h1>
               <b>291</b>
-              <ion-text class="ion-margin-start" color="primary"></ion-text>
+             
             </h1>
-            <p></p>
+        
           </ion-label>
         </ion-item>
       </ion-col>
@@ -51,12 +51,12 @@
 
 
 
-  <ion-list lines="none" style="margin-top: 20px;">
+  <ion-list lines="none" style="margin-top: 60px;">
   
 
     <ion-item-group>
       <ion-item-sliding *ngFor="let item of requests">
-        <ion-item (click)="options()" class="ion-padding-vertical popItem">
+        <ion-item  class="ion-padding-vertical popItem">
         
           <ion-label>
             <ion-note color="dark"><b>{{item?.name}}</b></ion-note>

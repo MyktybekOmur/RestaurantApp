@@ -18,7 +18,6 @@ export class DetailPage implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private foodService: FoodService,
     private cartService: CartService,
     private toastCtrl: ToastController,
     private productApi:ProductsService
@@ -30,15 +29,15 @@ export class DetailPage implements OnInit {
     this.getProduct();
   }
   getProduct(){
-    this.productApi.getProduct(this.id).subscribe((res)=>{
-      this.food = res;
+    this.productApi.getMeal(this.id).subscribe((res)=>{
+      this.food = res.data;
     })
   }
 
   addItemToCart() {
     const cartitem: CartItem = {
-      id: this.food?.id,
-      name: this.food?.title,
+      id: this.food?._id,
+      name: this.food?.name,
       price: this.food?.price,
       image: this.food?.image,
       quantity: 1,

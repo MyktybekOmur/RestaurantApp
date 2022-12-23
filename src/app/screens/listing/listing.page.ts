@@ -14,14 +14,17 @@ export class ListingPage implements OnInit {
   categories: Category[] = [];
   foods: Food[] = [];
 
-  constructor(private foodService: FoodService, private router: Router,private getProductApi:ProductsService) { }
+  constructor(private foodService: FoodService, private router: Router,private productApi:ProductsService) { }
 
   ngOnInit() {
-    this.getProductApi.getProducts().subscribe((res)=>{
-      this.foods = res;
+    this.getMeals()
+  }
+  getMeals(){
+    this.productApi.getMeals().subscribe((res)=>{
+      console.log(res)
+      this.foods=res.data
     })
   }
-
 
 
   goToDetailPage(id: number) {

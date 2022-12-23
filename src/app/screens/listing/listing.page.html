@@ -15,6 +15,6 @@
     <!-- PRODUCTS -->
     <!-- <h1 class="list-header">Popüler</h1> -->
     <div class="food-list">
-        <app-food-card *ngFor="let food of foods" [item]="food" [type]="false" (clicked)="goToDetailPage(food.id)"></app-food-card>
+        <app-food-card *ngFor="let food of foods" [item]="food" [type]="false" (clicked)="goToDetailPage(food?._id)"></app-food-card>
     </div>
 </ion-content>

@@ -22,7 +22,7 @@
     </div>
 
     <!-- CHECKOUT BUTTON -->
-    <app-button *ngIf="(cartItems$|async).length">
+    <app-button *ngIf="(cartItems$|async).length" (click)="submit()">
         Toplam: <span>{{totalAmount$|async|number:'1.2'}}<sup>som</sup></span>
     </app-button>
 

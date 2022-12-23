@@ -8,13 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class CartService {
   private items$ = new BehaviorSubject<CartItem[]>([
-    {
-      id: 1,
-      name: 'Sea Food',
-      price: 12,
-      image: 'assets/images/foods/seafood-dishes.png',
-      quantity: 1,
-    },
+
   ]);
 
   getCart() {
@@ -35,7 +29,9 @@ export class CartService {
     items[index].quantity += quantity;
     this.items$.next(items);
   }
-
+  removeAll(){
+    this.items$.next([])
+  }
   getTotalAmount() {
     return this.items$.pipe(
       map((items) => {

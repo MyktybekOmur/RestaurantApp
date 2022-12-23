@@ -38,23 +38,12 @@ export class LoginPage implements OnInit {
   async onSubmit(){
     const loading = await this.loadingController.create();
     await loading.present();
-    this.usersApi.login(this.loginForm).subscribe((res)=>{
-      console.log(res)
-      if(res.length>0){
-        this.localData.addData(res);
-        this.router.navigate(['/home'])
-      }else{
-        this.presentToast('top')
-      }
-   
-    })
+
     loading.dismiss();
     
   }
   onSubmitReg(){
-    this.usersApi.setUser(this.form).then((res)=>{
-      console.log(res)
-    })
+
   }
   async presentToast(position: 'top' | 'middle' | 'bottom') {
     const toast = await this.toastController.create({

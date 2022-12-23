@@ -24,9 +24,7 @@ export class ProductsPage implements OnInit {
    this.getProductsList();
   }
   getProductsList(){
-    this.productApi.getProducts().subscribe((res)=>{
-      this.foods = res;
-    })
+
   }
 
 

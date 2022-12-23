@@ -2,11 +2,11 @@
 
 
 
-        <ion-img (click)="clicked.emit()" [src]="item.image"></ion-img>
+    <ion-img (click)="clicked.emit()" [src]="item?.image?.path"></ion-img>
 
     <div class="card-content">
-        <h3 (click)="clicked.emit()" class="title">{{item.title}}</h3>
-        <h2 (click)="clicked.emit()" class="subtitle">{{item.price}}<sup>som</sup></h2>
+        <h3 (click)="clicked.emit()" class="title">{{item?.name}}</h3>
+        <h2 (click)="clicked.emit()" class="subtitle">{{item?.price}}<sup>som</sup></h2>
         <div *ngIf="type">
             <ion-badge *ngIf="item?.is_active=='0'"  color="danger"  slot="start">Possive</ion-badge>
             <ion-badge *ngIf="item?.is_active=='1'" color="success" slot="start">Possive</ion-badge>

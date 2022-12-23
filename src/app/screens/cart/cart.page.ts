@@ -32,6 +32,11 @@ export class CartPage implements OnInit {
     else this.cartService.changeQty(-1, item.id);
   }
 
+
+  submit(){
+    this.cartService.removeAll()
+  }
+
   async removeFromCart(item: CartItem) {
     const alert = await this.alertCtrl.create({
       header: 'Remove',

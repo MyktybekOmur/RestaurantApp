@@ -20,7 +20,7 @@ export class ListingPage implements OnInit {
     this.getMeals()
   }
   getMeals(){
-    this.productApi.getMeals().subscribe((res)=>{
+    this.productApi.getMeals('?status=true').subscribe((res)=>{
       console.log(res)
       this.foods=res.data
     })

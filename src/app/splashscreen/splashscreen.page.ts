@@ -13,18 +13,18 @@ export class SplashscreenPage implements OnInit {
   constructor(private navCtrl:NavController,private data: DataService) { }
 
   ngOnInit() {
-    this.navCtrl.navigateRoot('home');
-    // this.getUserData().then(result=>{
-    //   this.res = result;
-    // });
-    // console.log(this.res);
-    // setTimeout(()=>{
-    //   if(this.res)
-    //     this.navCtrl.navigateRoot('home');
-    //   else{
-    //     this.navCtrl.navigateRoot('login');
-    //   }
-    // },3000)
+  
+    this.getUserData().then(result=>{
+      this.res = result;
+    });
+    console.log(this.res);
+    setTimeout(()=>{
+      if(this.res)
+        this.navCtrl.navigateRoot('home');
+      else{
+        this.navCtrl.navigateRoot('login');
+      }
+    },3000)
   }
   async getUserData(){
     return await this.data.getData();

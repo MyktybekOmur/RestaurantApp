@@ -24,7 +24,10 @@ export class ProductsPage implements OnInit {
    this.getProductsList();
   }
   getProductsList(){
-
+    this.productApi.getMeals('').subscribe((res)=>{
+      console.log(res)
+      this.foods=res.data
+    })
   }
 
 

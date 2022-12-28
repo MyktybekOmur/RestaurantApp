@@ -15,7 +15,7 @@
     <!-- FOOD DETAIL CARD -->
     <div class="card">
         <div class="image">
-            <ion-img [src]="food?.image"></ion-img>
+            <ion-img [src]="food?.image?food?.image?.path:'assets/images/foods/tambi.png'"></ion-img>
         </div>
 
         <div class="card-content">

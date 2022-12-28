@@ -1,12 +1,13 @@
 <div class="cart-item">
-  <div class="image">
-      <ion-img [src]="item.image"></ion-img>
+  <div *ngFor="let item of item.meals" class="item-image">
+     
+      <ion-img  [src]="item?.image"></ion-img>
   </div>
 
   <div class="description">
-      <h3>{{item.name}}</h3>
-      <p>{{item.price | number:'1.2'}} <sup>TL</sup></p>
-      <span>20.02.12 / {{item.quantity}} shtuk</span>
+      <h3>{{item?.total_price}}</h3>
+      <p>{{item?.total_price | number}} <sup>SOM</sup></p>
+      <span>{{item?.order_date.slice(0,10)}} / {{item.total_count}} shtuk</span>
   </div>
 
   <!-- <div class="actions">

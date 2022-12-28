@@ -2,7 +2,7 @@
 
 
 
-    <ion-img (click)="clicked.emit()" [src]="item?.image?.path"></ion-img>
+    <ion-img (click)="clicked.emit()" [src]="item?.image?item?.image?.path:'assets/images/foods/tambi.png'"></ion-img>
 
     <div class="card-content">
         <h3 (click)="clicked.emit()" class="title">{{item?.name}}</h3>

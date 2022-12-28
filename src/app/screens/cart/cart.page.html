@@ -13,7 +13,12 @@
                 </ion-item-option>
             </ion-item-options>
         </ion-item-sliding>
+        <ion-item *ngIf="(cartItems$|async).length">
+            <ion-label position="fixed">Date</ion-label>
+           <input type="date" [(ngModel)]="form.order_date"  min="{{orderDate}}"/>
+          </ion-item>
     </ion-list>
+   
 
     <!-- EMPTY CART -->
     <div class="empty-cart" *ngIf="!(cartItems$|async).length">
@@ -23,12 +28,12 @@
 
     <!-- CHECKOUT BUTTON -->
     <app-button *ngIf="(cartItems$|async).length" (click)="submit()">
-        Toplam: <span>{{totalAmount$|async|number:'1.2'}}<sup>som</sup></span>
+        Toplam: <span>{{totalAmount$.totalPrice|number}}<sup>som</sup></span>
     </app-button>
 
     <h3 class="title" > Önceki siparişler</h3>
     <ion-list lines="none">
-        <ion-item-sliding *ngFor="let item of cartItems$|async">
+        <ion-item-sliding *ngFor="let item of orders">
             <ion-item>
                 <app-card-history-item [item]="item" (increase)="onIncrease(item)" (decrease)="onDecrease(item)"></app-card-history-item>
             </ion-item>

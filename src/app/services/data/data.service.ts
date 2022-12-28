@@ -26,7 +26,7 @@ export class DataService {
   }
   async removeData() {
 
-    this.storage.clear();
+    this.storage.remove(USER_KEY);;
 
     /*const storedData = await this.storage.get(USER_KEY) || [];
     storedData.splice(item, 1);

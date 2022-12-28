@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
+  // private URL = 'https://restaurant-rest-api-production.up.railway.app/api/';
   private URL = 'http://localhost:50012/api/';
  
   constructor(private http: HttpClient) {}
@@ -20,7 +21,7 @@ export class ApiService {
   put(endpoint, body, header): Observable<any> {
     console.log(this.URL + endpoint);
  
-    return this.http.post(this.URL + endpoint, body, { headers: header });
+    return this.http.put(this.URL + endpoint, body);
   }
   delete(endpoint): Observable<any> {
     return this.http.get(this.URL + endpoint);

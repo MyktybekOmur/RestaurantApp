@@ -7,7 +7,7 @@ import { CartItem } from 'src/app/models/cart-item.model';
   styleUrls: ['./card-history-item.component.scss'],
 })
 export class CardHistoryItemComponent {
-  @Input() item: CartItem;
+  @Input() item: any;
   @Output() increase = new EventEmitter();
   @Output() decrease = new EventEmitter();
 

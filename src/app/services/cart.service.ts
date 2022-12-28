@@ -35,12 +35,16 @@ export class CartService {
   getTotalAmount() {
     return this.items$.pipe(
       map((items) => {
-        let total = 0;
+        let totalPrice = 0;
+        let totalQt = 0;
         items.forEach((item) => {
-          total += item.quantity * item.price;
+          totalPrice += item.quantity * item.price;
+          totalQt += item.quantity;
         });
 
-        return total;
+
+
+        return {total: totalQt,totalPrice:totalPrice};
       })
     );
   }

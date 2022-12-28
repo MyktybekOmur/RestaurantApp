@@ -14,11 +14,11 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
 
-    this.getUserData().then((result)=>{
-      this.user = result[0][0];
-      console.log(this.user)
+   this.getUserData().then((result)=>{
+      this.user = result[0];
+
     });
-  
+
 
   }
   async getUserData(){

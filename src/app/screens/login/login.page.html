@@ -1,19 +1,19 @@
 <ion-content >
-  <div class="ion-text-center">
-    <!-- <img class="img1" src="assets/loginimage.svg"> -->
+  <div class="ion-text-center marginTop100">
+    <ion-icon name="restaurant-outline" style="color: #fff; font-size:100px"></ion-icon>
   </div>
     <div *ngIf="isLogin" class="container">
       <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate class="card-body">
       <div class="form ion-text-center">
         <h2>Login </h2>
         <ion-item lines='none'>
-          <ion-input type="tel" [(ngModel)]="loginForm.number" name="telnumbet" required #telnumber="ngModel" placeholder="+996 999 555 135" ></ion-input>
+          <ion-input type="email" [(ngModel)]="loginForm.email" name="telnumbet" required #authApi="ngModel" placeholder="test@gmail.com" ></ion-input>
  
         </ion-item>
         <ion-item lines='none'>
           <ion-input type="password" [(ngModel)]="loginForm.password" name="password" required #password="ngModel" placeholder='Password'></ion-input>
         </ion-item>
-        <ion-button type="submit"  [disabled]="!f.form.valid || loginForm.number.length!=13" expand='block' >Login</ion-button>
+        <ion-button type="submit"  [disabled]="!f.form.valid || !loginForm.email" expand='block' >Login</ion-button>
         <h3 (click)="login(false)">Registration </h3>
       </div>
 </form>

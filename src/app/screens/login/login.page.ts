@@ -1,8 +1,8 @@
-import { UsersService } from './../../services/users/users.service';
+import { AuthService } from './../../services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data/data.service';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, ToastController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -16,16 +16,14 @@ export class LoginPage implements OnInit {
     name:'',
     storeName:'',
     storeAdress:'',
-    number:'',
     password:'',
-    role:null,
-    image:''
   }
   loginForm: any = {
-    number:'',
+    email:'',
     password:''
   }
-  constructor(private router:Router,private usersApi:UsersService,
+  constructor(private navCtrl: NavController,
+      private authApi:AuthService,
       private localData: DataService,  
       private loadingController: LoadingController,
       private toastController: ToastController) { }
@@ -38,19 +36,32 @@ export class LoginPage implements OnInit {
   async onSubmit(){
     const loading = await this.loadingController.create();
     await loading.present();
-
+    this.authApi.Login(this.loginForm).subscribe((res)=>{
+        this.localData.addData(res.data);
+        this.navCtrl.navigateRoot(['home']);
+    },(err)=>{
+      this.presentToast(err.error.message,'danger')
+    })
     loading.dismiss();
     
   }
-  onSubmitReg(){
-
+  async onSubmitReg(){
+    const loading = await this.loadingController.create();
+    await loading.present();
+    this.authApi.Register(this.form).subscribe((res)=>{
+        this.localData.addData(res.data);
+        this.navCtrl.navigateRoot(['home']);
+    },(err)=>{
+      this.presentToast(err.error.message,'danger')
+    })
+    loading.dismiss();
   }
-  async presentToast(position: 'top' | 'middle' | 'bottom') {
+  async presentToast(message:string,color:string) {
     const toast = await this.toastController.create({
-      message: 'Error!',
-      color: 'danger',
+      message:message,
+      color: color,
       duration: 1500,
-      position: position
+      position: 'top'
     });
 
     await toast.present();

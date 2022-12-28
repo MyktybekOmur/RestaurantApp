@@ -14,7 +14,7 @@
     </div>
   </ion-grid>
 
-  <ion-row class="ion-padding-horizontal">
+  <ion-row *ngIf="user?.role==='ADMIN'" class="ion-padding-horizontal">
     <ion-col size="6">
       <ion-item [routerLink]="['/stories']" lines="none" class="ion-text-center">
         <ion-icon name="storefront-outline" color="primary"></ion-icon>
@@ -54,7 +54,28 @@
       </ion-item>
     </ion-col>
   </ion-row>
-
+  <ion-row *ngIf="user?.role==='USER'" class="ion-padding-horizontal">
+    <ion-col size="6">
+      <ion-item lines="none" class="ion-text-center">
+     
+        <ion-icon name="bag-check-outline" color="primary"></ion-icon>
+        <ion-label>
+          34
+          <p>Orders</p>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+    <ion-col size="6">
+      <ion-item lines="none" class="ion-text-center">
+      
+        <ion-icon name="repeat-outline" color="primary"></ion-icon>
+        <ion-label>
+          14
+          <p>Product</p>
+        </ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
   <ion-list lines="full" style="padding: 5px;">
     <ion-item>
       <ion-label>

@@ -14,7 +14,8 @@ export class HomePage {
   ngOnInit() {
 
     this.getUserData().then((result)=>{
-      this.user = result[0][0];
+      this.user = result[0];
+      console.log(this.user)
     });
   
 
